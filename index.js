@@ -1,7 +1,9 @@
 const express = require('express');
 const app = express();
 
-app.post('/', (req, res) => {
+app.use(express.json());
+
+app.post('/profit', (req, res) => {
   const {
     ingredients,
     total_time,
@@ -10,38 +12,41 @@ app.post('/', (req, res) => {
     quantity
   } = req.body;
   
-
-  
   let recipe_cost = 0;
+
   for (const ingredient of ingredients) {
     const cost_of_ingredient = calculateCostOfOne(ingredient);
     
-    recipe_cost += cost_of_ingredient;
-    
-    const cost_of_one = recipe_cost / quantity; // return cost of one
-
+    recipe_cost += cost_of_ingredient;    
   }
-  
-  total_time * hour_value;
 
-  const faturamento = product_price * quantity
-  const lucro = faturamento - recipe_cost
+  const cost_of_one = recipe_cost / quantity;
+  
+  const work_value = total_time * hour_value;
+
+  const revenue = product_price * quantity
+  const profit = revenue - recipe_cost + work_value;
 
   res.json({
     recipe_cost,
     cost_of_one,
-    faturamento,
-    lucro
+    revenue,
+    profit,
+    work_value
   });
 });
 
-
 function calculateCostOfOne(ingredient) {
-  const cost_of_one_box = ingredient.cost / ingredient.quantity; // custo de uma embalagem, por exemplo
-  const cost_of_g = ingredient.cost / ingredient.weight; // custo da grama
-  const product_cost_total = ingredient.cost * ingredient.quantity; // custo do produto total
-
-  return cost_of_one;
+  switch (ingredient.type) {
+    case 'unit':
+      return ingredient.cost / ingredient.quantity;
+    case 'weight':
+      return ingredient.cost / ingredient.weight;
+    case 'volume':
+      return ingredient.cost * ingredient.quantity;
+    default:
+      return 0;
+  }
 }
 
 app.listen(3000, () => console.log('Server running on port 3000'));
