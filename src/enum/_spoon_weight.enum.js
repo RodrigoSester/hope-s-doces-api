@@ -5,4 +5,4 @@ const spoonWeight = {
   TEA_FLAT: 3,
 };
 
-export default spoonWeight;
+module.exports = spoonWeight;

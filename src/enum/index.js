@@ -1,4 +1,4 @@
-const spoonWeightEnum = require('./spoonWeight.enum');
+const spoonWeightEnum = require('./_spoon_weight.enum');
 
 module.exports = {
   spoonWeightEnum
