@@ -1,12 +1,16 @@
+const { spoonWeightEnum } = require("../enum");
 
 function _calculateCostOfOne(ingredient) {
   switch (ingredient.type) {
-    case 'unit':
+    case 'volume':
       return ingredient.cost / ingredient.quantity;
     case 'weight':
-      return ingredient.cost / ingredient.weight;
-    case 'volume':
+      return ingredient.cost / ingredient.total_weight;
+    case 'unit':
       return ingredient.cost * ingredient.quantity;
+      case 'spoon':
+        const spoon = ingredient?.spoon_weight ? spoonWeightEnum[ingredient?.spoon_weight] : spoonWeightEnum.TABLE_FLAT;
+        return ingredient.cost / (ingredient.total_spoons * spoon);
     default:
       return 0;
   }
