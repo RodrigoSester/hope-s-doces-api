@@ -2,9 +2,17 @@ const bcrypt = require('bcrypt');
 
 const { userService } = require('../services');
 
+const jwt = require('jsonwebtoken')
+
 const login = async (req, res) => {
   try {
-    const token = generateToken();
+    const { id, email, username } = req.body;
+    
+    const token = jwt.sign({ id, email, username }, process.env.JWT_SECRET, {
+      expiresIn: '1d',
+    })
+    
+    return res.status(200).json({ token });
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
