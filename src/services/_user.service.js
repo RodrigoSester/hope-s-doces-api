@@ -10,6 +10,7 @@ const register = async (person) => {
       password: person.hashedPassword
     })
     .into('user')
+    .returning(['id', 'username', 'email'])
 };
 
 module.exports = {
