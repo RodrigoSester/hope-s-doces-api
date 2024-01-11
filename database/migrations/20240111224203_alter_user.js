@@ -3,7 +3,7 @@
  * @returns { Promise<void> }
  */
 exports.up = function(knex) {
-  return knex.schema.alterTable('users', (table) => {
+  return knex.schema.alterTable('user', (table) => {
     table.string('password').notNullable();
   });
 };
@@ -13,7 +13,7 @@ exports.up = function(knex) {
  * @returns { Promise<void> }
  */
 exports.down = function(knex) {
-  return knex.schema.alterTable('users', (table) => {
+  return knex.schema.alterTable('user', (table) => {
     table.dropColumn('password');
   });
 };
