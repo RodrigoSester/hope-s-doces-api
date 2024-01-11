@@ -21,9 +21,9 @@ const register = async (req, res) => {
       email,
       hashedPassword
     };
-    const registeredUser = userService.register(userDTO)
+    const registeredUser = await userService.register(userDTO)
 
-    return res.status(201).json(registeredUser);
+    return res.status(201).json(registeredUser[0]);
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
