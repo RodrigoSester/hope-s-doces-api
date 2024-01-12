@@ -10,7 +10,7 @@ exports.up = function(knex) {
     table.foreign('person_id').references('id').inTable('person');
 
     table.text('description').notNullable();
-    table.number('value').notNullable();
+    table.decimal('value').notNullable();
     table.boolean('is_paid').notNullable().defaultTo(false);
     table.string('adress', 150).notNullable();
 
@@ -21,6 +21,7 @@ exports.up = function(knex) {
     table.timestamp('updated_at').defaultTo(knex.fn.now());
     
     table.boolean('is_deleted').defaultTo(false);
+    table.timestamp('deleted_at').nullable();
   });
 };
 
