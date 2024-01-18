@@ -21,7 +21,15 @@ const getById = async (id) => {
     .first();
 }
 
+const getAll = async () => {
+  return await db
+    .select(['id', 'name', 'number', 'created_by', 'created_at', 'updated_by', 'updated_at'])
+    .from('person')
+    .whereNot('is_deleted', true);
+}
+
 module.exports = {
   register,
-  getById
+  getById,
+  getAll
 }

@@ -39,7 +39,18 @@ const getById = async (req, res) => {
   }
 }
 
+const getAll = async (req, res) => {
+  try {
+    const people = await personService.getAll();
+
+    return res.status(200).json(people);
+  } catch (err) {
+    throw err;
+  }
+}
+
 module.exports = {
   registerPerson,
-  getById
+  getById,
+  getAll
 }
