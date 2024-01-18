@@ -1,6 +1,3 @@
-const knex = require("knex");
-
-
 const db = require('../../database/config')
 
 const register = async (person) => {
