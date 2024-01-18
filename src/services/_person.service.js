@@ -12,6 +12,16 @@ const register = async (person) => {
     .returning(['id', 'name', 'number', 'created_by', 'created_at']);
 };
 
+const getById = async (id) => {
+  return await db
+    .select(['id', 'name', 'number', 'created_by', 'created_at', 'updated_by', 'updated_at'])
+    .from('person')
+    .where('id', id)
+    .andWhereNot('is_deleted', true)
+    .first();
+}
+
 module.exports = {
-  register
+  register,
+  getById
 }
