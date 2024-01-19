@@ -21,11 +21,13 @@ const getById = async (id) => {
     .first();
 }
 
-const getAll = async () => {
+const getAll = async (filter) => {
   return await db
     .select(['id', 'name', 'number', 'created_by', 'created_at', 'updated_by', 'updated_at'])
     .from('person')
-    .whereNot('is_deleted', true);
+    .whereNot('is_deleted', true)
+    .offset(filter.offset)
+    .limit(filter.limit);
 }
 
 module.exports = {

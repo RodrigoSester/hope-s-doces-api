@@ -40,8 +40,15 @@ const getById = async (req, res) => {
 }
 
 const getAll = async (req, res) => {
+  const { limit, offset } = req.query_options;
+
+  const filter = {
+    limit, 
+    offset
+  }
+
   try {
-    const people = await personService.getAll();
+    const people = await personService.getAll(filter);
 
     return res.status(200).json(people);
   } catch (err) {
