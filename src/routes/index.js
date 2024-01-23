@@ -7,9 +7,9 @@ const configureRoutes = server => {
   server.use(recipeRoutes),
   server.use(personRoutes),
   server.use(userRoutes),
-  server.use(orderRoutes)
-}
+  server.use(orderRoutes);
+};
 
 module.exports = {
   configureRoutes
-}
+};

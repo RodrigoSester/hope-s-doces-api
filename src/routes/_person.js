@@ -3,7 +3,7 @@ const routes = express.Router();
 
 // middlewares
 const authorizer = require('../middlewares/authorizer.middleware');
-const queryOptions = require('../middlewares/query-options.middleware')
+const queryOptions = require('../middlewares/query-options.middleware');
 
 const controller = require('../controllers/person.controller');
 

@@ -1,4 +1,4 @@
-const db = require('../../database/config')
+const db = require('../../database/config');
 
 const register = async (person) => {
   return await db
@@ -19,7 +19,7 @@ const getById = async (id) => {
     .where('id', id)
     .andWhereNot('is_deleted', true)
     .first();
-}
+};
 
 const getAll = async (filter) => {
   return await db
@@ -29,10 +29,10 @@ const getAll = async (filter) => {
     .offset(filter.offset)
     .limit(filter.limit)
     .orderBy(filter.sort_by, filter.order);
-}
+};
 
 module.exports = {
   register,
   getById,
   getAll
-}
+};

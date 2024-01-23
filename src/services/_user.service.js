@@ -1,6 +1,4 @@
-
-
-const db = require('../../database/config')
+const db = require('../../database/config');
 
 const register = async (person) => {
   return await db
@@ -10,7 +8,7 @@ const register = async (person) => {
       password: person.hashedPassword
     })
     .into('user')
-    .returning(['id', 'username', 'email'])
+    .returning(['id', 'username', 'email']);
 };
 
 module.exports = {

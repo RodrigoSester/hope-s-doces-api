@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "nodemon index.js",
     "migrations": "knex migrate:latest",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint:fix": "eslint --fix .",
+    "lint": "eslint ."
   },
   "keywords": [],
   "author": "",
@@ -18,5 +19,12 @@
     "knex": "^3.1.0",
     "nodemon": "^3.0.2",
     "pg": "^8.11.3"
+  },
+  "devDependencies": {
+    "eslint": "^8.56.0",
+    "eslint-config-standard": "^17.1.0",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-n": "^16.6.2",
+    "eslint-plugin-promise": "^6.1.1"
   }
 }

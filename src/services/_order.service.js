@@ -1,6 +1,4 @@
-
 const db = require('../../database/config');
-
 
 const register = async (orderDTO) => {
   return await db
@@ -19,4 +17,4 @@ const register = async (orderDTO) => {
 
 module.exports = {
   register
-}
+};

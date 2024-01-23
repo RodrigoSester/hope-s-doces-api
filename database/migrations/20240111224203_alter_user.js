@@ -2,7 +2,7 @@
  * @param { import("knex").Knex } knex
  * @returns { Promise<void> }
  */
-exports.up = function(knex) {
+exports.up = function (knex) {
   return knex.schema.alterTable('user', (table) => {
     table.string('password').notNullable();
 
@@ -14,7 +14,7 @@ exports.up = function(knex) {
  * @param { import("knex").Knex } knex
  * @returns { Promise<void> }
  */
-exports.down = function(knex) {
+exports.down = function (knex) {
   return knex.schema.alterTable('user', (table) => {
     table.dropColumn('password');
 

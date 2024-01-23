@@ -8,8 +8,8 @@ const personExists = async (person_id) => {
   }
 
   return person;
-}
+};
 
 module.exports = {
   personExists
-}
+};

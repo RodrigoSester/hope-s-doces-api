@@ -2,7 +2,7 @@
  * @param { import("knex").Knex } knex
  * @returns { Promise<void> }
  */
-exports.up = function(knex) {
+exports.up = function (knex) {
   return knex.schema.createTable('order', table => {
     table.increments('id').primary();
 
@@ -16,10 +16,10 @@ exports.up = function(knex) {
 
     table.integer('created_by').notNullable();
     table.timestamp('created_at').defaultTo(knex.fn.now());
-    
+
     table.integer('updated_by').notNullable();
     table.timestamp('updated_at').defaultTo(knex.fn.now());
-    
+
     table.boolean('is_deleted').defaultTo(false);
     table.timestamp('deleted_at').nullable();
   });
@@ -29,6 +29,6 @@ exports.up = function(knex) {
  * @param { import("knex").Knex } knex
  * @returns { Promise<void> }
  */
-exports.down = function(knex) {
+exports.down = function (knex) {
   return knex.schema.dropTable('order');
 };

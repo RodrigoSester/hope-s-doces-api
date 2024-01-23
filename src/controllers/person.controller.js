@@ -17,14 +17,13 @@ const registerPerson = async (req, res) => {
       number,
       created_by: id
     };
-  
+
     const registeredPerson = await personService.register(personDTO);
-    
+
     return res.status(201).json(registeredPerson);
   } catch (err) {
     throw err;
   }
-
 };
 
 const getById = async (req, res) => {
@@ -37,17 +36,17 @@ const getById = async (req, res) => {
   } catch (err) {
     throw err;
   }
-}
+};
 
 const getAll = async (req, res) => {
   const { limit, offset, sort_by, order } = req.query_options;
 
   const filter = {
-    limit, 
+    limit,
     offset,
     sort_by,
     order
-  }
+  };
 
   try {
     const people = await personService.getAll(filter);
@@ -56,10 +55,10 @@ const getAll = async (req, res) => {
   } catch (err) {
     throw err;
   }
-}
+};
 
 module.exports = {
   registerPerson,
   getById,
   getAll
-}
+};
