@@ -40,11 +40,13 @@ const getById = async (req, res) => {
 }
 
 const getAll = async (req, res) => {
-  const { limit, offset } = req.query_options;
+  const { limit, offset, sort_by, order } = req.query_options;
 
   const filter = {
     limit, 
-    offset
+    offset,
+    sort_by,
+    order
   }
 
   try {

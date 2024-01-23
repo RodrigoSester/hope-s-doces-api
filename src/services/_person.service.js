@@ -27,7 +27,8 @@ const getAll = async (filter) => {
     .from('person')
     .whereNot('is_deleted', true)
     .offset(filter.offset)
-    .limit(filter.limit);
+    .limit(filter.limit)
+    .orderBy(filter.sort_by, filter.order);
 }
 
 module.exports = {
