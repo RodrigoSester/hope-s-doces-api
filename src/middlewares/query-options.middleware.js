@@ -1,7 +1,7 @@
 
 
 const apply = async (req, res, next) => {
-  const { limit = 10, offset = 0 } = req.query;
+  const { limit = 10, offset = 0, sort_by = 'name', order = 'ASC' } = req.query;
 
   if (limit <= 0) {
     throw new Error('The limit must be greater than 0')
@@ -12,7 +12,9 @@ const apply = async (req, res, next) => {
 
   req.query_options = {
     limit,
-    offset
+    offset,
+    sort_by,
+    order
   }
 
   next();
