@@ -39,7 +39,7 @@ const getById = async(req, res) => {
 };
 
 const getAll = async(req, res) => {
-  const { limit, offset, sortBy, order } = req.query_options;
+  const { limit, offset, sortBy, order } = req.queryOptions;
 
   const filter = {
     limit,
