@@ -1,20 +1,20 @@
 const { orderService } = require('../services');
 const verifyExistence = require('../helpers/verify-existence.helper');
 
-const registerOrder = async (req, res) => {
+const registerOrder = async(req, res) => {
   try {
-    const { person_id, description, value, is_paid, adress } = req.body;
+    const { personId, description, value, isPaid, adress } = req.body;
     const { id } = req.user;
 
-    await verifyExistence.personExists(person_id);
+    await verifyExistence.personExists(personId);
 
     const orderDTO = {
-      person_id,
+      personId,
       description,
       value,
-      is_paid,
+      isPaid,
       adress,
-      created_by: id
+      createdBy: id
     };
     const registeredOrder = await orderService.register(orderDTO);
     return res.status(201).json(registeredOrder);

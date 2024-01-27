@@ -4,7 +4,7 @@ const { userService } = require('../services');
 
 const jwt = require('jsonwebtoken');
 
-const login = async (req, res) => {
+const login = async(req, res) => {
   try {
     const { id, email, username } = req.body;
 
@@ -18,7 +18,7 @@ const login = async (req, res) => {
   }
 };
 
-const register = async (req, res) => {
+const register = async(req, res) => {
   try {
     const { username, email, password } = req.body;
 

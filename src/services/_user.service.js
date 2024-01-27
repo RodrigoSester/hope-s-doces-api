@@ -1,6 +1,6 @@
 const db = require('../../database/config');
 
-const register = async (person) => {
+const register = async(person) => {
   return await db
     .insert({
       username: person.username,

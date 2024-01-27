@@ -1,7 +1,7 @@
 const { personService } = require('../services');
 const verifyExistence = require('../helpers/verify-existence.helper');
 
-const registerPerson = async (req, res) => {
+const registerPerson = async(req, res) => {
   const { name, number } = req.body;
   const { id } = req.user;
 
@@ -15,7 +15,7 @@ const registerPerson = async (req, res) => {
     const personDTO = {
       name,
       number,
-      created_by: id
+      createdBy: id
     };
 
     const registeredPerson = await personService.register(personDTO);
@@ -26,7 +26,7 @@ const registerPerson = async (req, res) => {
   }
 };
 
-const getById = async (req, res) => {
+const getById = async(req, res) => {
   const { id } = req.params;
 
   try {
@@ -38,13 +38,13 @@ const getById = async (req, res) => {
   }
 };
 
-const getAll = async (req, res) => {
-  const { limit, offset, sort_by, order } = req.query_options;
+const getAll = async(req, res) => {
+  const { limit, offset, sortBy, order } = req.query_options;
 
   const filter = {
     limit,
     offset,
-    sort_by,
+    sortBy,
     order
   };
 

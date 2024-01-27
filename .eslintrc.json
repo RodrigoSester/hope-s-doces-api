@@ -29,6 +29,7 @@
         "no-var": "error",
         "no-useless-return": "error",
         "no-useless-constructor": "error",
-        "no-useless-catch": "error"
+        "no-useless-catch": "error",
+        "camelcase": ["error", { "properties": "always" }]
     }
 }

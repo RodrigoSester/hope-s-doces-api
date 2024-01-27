@@ -4,9 +4,9 @@ const userRoutes = require('./_user');
 const orderRoutes = require('./_order');
 
 const configureRoutes = server => {
-  server.use(recipeRoutes),
-  server.use(personRoutes),
-  server.use(userRoutes),
+  server.use(recipeRoutes);
+  server.use(personRoutes);
+  server.use(userRoutes);
   server.use(orderRoutes);
 };
 

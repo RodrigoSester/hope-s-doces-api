@@ -1,6 +1,8 @@
 const { spoonWeightEnum } = require('../enum');
 
-function _calculateCostOfOne (ingredient) {
+function _calculateCostOfOne(ingredient) {
+  let spoon;
+
   switch (ingredient.type) {
     case 'volume':
       return (ingredient.cost / ingredient.total_volume) * ingredient.quantity;
@@ -9,14 +11,14 @@ function _calculateCostOfOne (ingredient) {
     case 'unit':
       return ingredient.cost * ingredient.quantity;
     case 'spoon':
-      const spoon = ingredient?.spoon_weight ? spoonWeightEnum[ingredient?.spoon_weight] : spoonWeightEnum.TABLE_FLAT;
+      spoon = ingredient?.spoonWeight ? spoonWeightEnum[ingredient?.spoonWeight] : spoonWeightEnum.TABLE_FLAT;
       return ((ingredient.spoons * spoon) * ingredient.cost) / _getWeightNumber(ingredient.total_weight);
     default:
       return 0;
   }
 }
 
-function _getWeightNumber (weight) {
+function _getWeightNumber(weight) {
   const number = parseFloat(weight);
   return isNaN(number) ? 0 : number;
 }
@@ -24,35 +26,35 @@ function _getWeightNumber (weight) {
 const calculateProfit = (req, res) => {
   const {
     ingredients,
-    total_time,
-    hour_value,
-    product_price,
+    totalTime,
+    hourValue,
+    productPrice,
     quantity
   } = req.body;
 
-  let recipe_cost = 0;
+  let recipeCost = 0;
 
   for (const ingredient of ingredients) {
-    const cost_of_ingredient = _calculateCostOfOne(ingredient);
+    const costOfIngredient = _calculateCostOfOne(ingredient);
 
-    recipe_cost += cost_of_ingredient;
+    recipeCost += costOfIngredient;
   }
 
-  recipe_cost = parseFloat(recipe_cost).toFixed(2);
+  recipeCost = parseFloat(recipeCost).toFixed(2);
 
-  const cost_of_one = recipe_cost / quantity;
+  const costOfOne = recipeCost / quantity;
 
-  const work_value = total_time * hour_value;
+  const workValue = totalTime * hourValue;
 
-  const revenue = product_price * quantity;
-  const profit = revenue - (parseFloat(recipe_cost) + work_value);
+  const revenue = productPrice * quantity;
+  const profit = revenue - (parseFloat(recipeCost) + workValue);
 
   res.json({
-    recipe_cost,
-    cost_of_one,
+    recipeCost,
+    costOfOne,
     revenue,
     profit,
-    work_value
+    workValue
   });
 };
 

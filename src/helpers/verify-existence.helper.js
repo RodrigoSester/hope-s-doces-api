@@ -1,7 +1,7 @@
 const { personService } = require('../services');
 
-const personExists = async (person_id) => {
-  const person = await personService.getById(person_id);
+const personExists = async(personId) => {
+  const person = await personService.getById(personId);
 
   if (!person) {
     throw new Error('Person not found');
