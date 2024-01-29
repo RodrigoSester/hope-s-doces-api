@@ -4,7 +4,7 @@ const personExists = async(personId) => {
   const person = await personService.getById(personId);
 
   if (!person) {
-    throw new Error('Person not found');
+    throw new Error(`Person with id ${personId} not found`);
   }
 
   return person;
