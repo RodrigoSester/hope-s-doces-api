@@ -23,7 +23,16 @@ const getAll = async(limit, offset, sortBy, order) => {
     .offset(offset);
 };
 
+const getById = async(id) => {
+  return await db
+    .select('id', 'person_id', 'description', 'value', 'is_paid', 'adress', 'created_at', 'created_by')
+    .from('order')
+    .where({ id })
+    .first();
+};
+
 module.exports = {
   register,
-  getAll
+  getAll,
+  getById
 };

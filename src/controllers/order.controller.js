@@ -46,7 +46,25 @@ const getAllOrders = async(req, res) => {
   }
 };
 
+const getOrderById = async(req, res) => {
+  try {
+    const { id } = req.params;
+
+    const order = await orderService.getById(id);
+
+    return res.status(200).json(order);
+  } catch (error) {
+    logger.error(error);
+    return res.status(500).json({
+      message: 'error',
+      error,
+      code: 'internal_server_error'
+    });
+  }
+};
+
 module.exports = {
   registerOrder,
-  getAllOrders
+  getAllOrders,
+  getOrderById
 };
