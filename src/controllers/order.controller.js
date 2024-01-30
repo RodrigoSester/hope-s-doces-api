@@ -29,6 +29,24 @@ const registerOrder = async(req, res) => {
   }
 };
 
+const getAllOrders = async(req, res) => {
+  try {
+    const { limit, offset, sortBy, order } = req.queryOptions;
+
+    const orders = await orderService.getAll(limit, offset, sortBy, order);
+
+    return res.status(200).json(orders);
+  } catch (error) {
+    logger.error(error);
+    return res.status(500).json({
+      message: 'error',
+      error,
+      code: 'internal_server_error'
+    });
+  }
+};
+
 module.exports = {
-  registerOrder
+  registerOrder,
+  getAllOrders
 };
