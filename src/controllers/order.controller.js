@@ -50,7 +50,7 @@ const getOrderById = async(req, res) => {
   try {
     const { id } = req.params;
 
-    const order = await orderService.getById(id);
+    const order = await verifyExistence.orderExists(id);
 
     return res.status(200).json(order);
   } catch (error) {

@@ -1,4 +1,4 @@
-const { personService } = require('../services');
+const { personService, orderService } = require('../services');
 
 const personExists = async(personId) => {
   const person = await personService.getById(personId);
@@ -10,6 +10,17 @@ const personExists = async(personId) => {
   return person;
 };
 
+const orderExists = async(orderId) => {
+  const order = await orderService.getById(orderId);
+
+  if (!order) {
+    throw new Error(`Order with id ${orderId} not found`);
+  }
+
+  return order;
+};
+
 module.exports = {
-  personExists
+  personExists,
+  orderExists
 };
