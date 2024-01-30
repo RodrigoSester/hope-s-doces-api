@@ -1,5 +1,6 @@
 const { orderService } = require('../services');
 const verifyExistence = require('../helpers/verify-existence.helper');
+const { logger } = require('../config');
 
 const registerOrder = async(req, res) => {
   try {
@@ -19,7 +20,12 @@ const registerOrder = async(req, res) => {
     const registeredOrder = await orderService.register(orderDTO);
     return res.status(201).json(registeredOrder);
   } catch (err) {
-    throw err;
+    logger.error(err);
+    return res.status(500).json({
+      message: 'error',
+      error: err,
+      code: 'internal_server_error'
+    });
   }
 };
 

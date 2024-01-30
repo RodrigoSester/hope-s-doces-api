@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken');
+const { logger } = require('../config');
 
 const verify = async(req, res, next) => {
   try {
@@ -14,6 +15,7 @@ const verify = async(req, res, next) => {
     req.user = decodedToken;
     next();
   } catch (error) {
+    logger.error(error);
     res.status(401).json({ message: error.message });
   }
 };

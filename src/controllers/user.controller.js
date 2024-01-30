@@ -3,6 +3,7 @@ const bcrypt = require('bcrypt');
 const { userService } = require('../services');
 
 const jwt = require('jsonwebtoken');
+const { logger } = require('../config');
 
 const login = async(req, res) => {
   try {
@@ -14,6 +15,7 @@ const login = async(req, res) => {
 
     return res.status(200).json({ token });
   } catch (error) {
+    logger.error(error);
     res.status(400).json({ message: error.message });
   }
 };
@@ -33,6 +35,7 @@ const register = async(req, res) => {
 
     return res.status(201).json(registeredUser[0]);
   } catch (error) {
+    logger.error(error);
     res.status(400).json({ message: error.message });
   }
 };
