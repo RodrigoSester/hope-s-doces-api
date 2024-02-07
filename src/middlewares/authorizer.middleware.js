@@ -10,6 +10,11 @@ const verify = async(req, res, next) => {
     }
 
     const token = authorization.split(' ')[1];
+
+    if (!token) {
+      throw new Error('Missing token');
+    }
+
     const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
 
     req.user = decodedToken;
