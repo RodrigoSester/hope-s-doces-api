@@ -1,30 +1,16 @@
 const request = require('supertest');
 const app = require('../../index');
 
-const knex = require('knex');
-const knexfile = require('../../knexfile');
+const { beforeTests, afterTests } = require('../helpers/test.helper');
 
-let server;
 let token;
-let db;
 
 beforeAll(async() => {
-  server = app.listen(3001);
-
-  db = knex(knexfile.test);
-  await db.migrate.latest();
-
-  const user = { username: 'testuser', email: 'teste@gmail.com', password: 'testpassword' };
-  const { body } = await request(app).post('/users').send(user);
-
-  const res = await request(app).post('/users/login').send(body);
-  token = res.body.token;
+  token = await beforeTests();
 });
 
 afterAll(() => {
-  db.migrate.rollback();
-  db.destroy();
-  server.close();
+  afterTests();
 });
 
 describe('registerPerson', () => {
