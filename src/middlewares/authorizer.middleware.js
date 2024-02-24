@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const { logger } = require('../config');
+const { logger } = require('../utils');
 
 const verify = async(req, res, next) => {
   try {

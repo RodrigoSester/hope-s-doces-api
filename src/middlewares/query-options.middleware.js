@@ -1,4 +1,4 @@
-const { logger } = require('../config');
+const { logger } = require('../utils');
 
 const apply = async(req, res, next) => {
   const { limit = 10, offset = 0, sortBy, order } = req.query;

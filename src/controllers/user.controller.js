@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt');
 const { userService } = require('../services');
 
 const jwt = require('jsonwebtoken');
-const { logger } = require('../config');
+const { logger } = require('../utils');
 
 const login = async(req, res) => {
   try {

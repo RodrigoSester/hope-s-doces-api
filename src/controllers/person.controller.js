@@ -2,7 +2,7 @@ const { personService } = require('../services');
 
 const verifyExistence = require('../helpers/verify-existence.helper');
 
-const { logger } = require('../config');
+const { logger } = require('../utils');
 
 const registerPerson = async(req, res) => {
   const { name, number } = req.body;

@@ -1,6 +1,6 @@
 const { orderService } = require('../services');
 const verifyExistence = require('../helpers/verify-existence.helper');
-const { logger } = require('../config');
+const { logger } = require('../utils');
 
 const registerOrder = async(req, res) => {
   try {
