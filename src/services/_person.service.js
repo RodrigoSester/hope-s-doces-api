@@ -31,8 +31,22 @@ const getAll = async(filter) => {
     .orderBy(filter.sortBy, filter.order);
 };
 
+const remove = async(personDTO) => {
+  return await db
+    .raw(`
+      UPDATE person
+      SET
+        is_deleted = $1,
+        deleted_at = NOW(),
+        deleted_by = $2
+      WHERE 
+        id = $3
+    `, [true, personDTO.userId, personDTO.id]);
+};
+
 module.exports = {
   register,
   getById,
-  getAll
+  getAll,
+  remove
 };

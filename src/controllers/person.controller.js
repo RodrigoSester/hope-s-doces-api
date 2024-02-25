@@ -75,8 +75,33 @@ const getAll = async(req, res) => {
   }
 };
 
+const remove = async(req, res) => {
+  const { personId } = req.params;
+
+  await verifyExistence.personExists(personId);
+
+  try {
+    const personDTO = {
+      id: personId,
+      userId: req.user.id
+    };
+    await personService.remove(personDTO);
+
+    return res.status(201).send();
+  } catch (err) {
+    logger.error(err);
+
+    return res.status(500).json({
+      message: 'error',
+      error: err,
+      code: 'internal_server_error'
+    });
+  }
+};
+
 module.exports = {
   registerPerson,
   getById,
-  getAll
+  getAll,
+  remove
 };
