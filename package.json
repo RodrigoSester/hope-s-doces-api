@@ -1,13 +1,14 @@
 {
-  "name": "hope's-doces",
+  "name": "hopes-doces",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon index.js | npx pino-pretty",
+    "dev": "nodemon src/index.js | npx pino-pretty",
     "migrations": "knex migrate:latest",
     "lint:fix": "eslint --fix .",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "build": "netlify deploy --prod"
   },
   "keywords": [],
   "author": "",
@@ -18,9 +19,12 @@
     "express": "^4.18.2",
     "jsonwebtoken": "^9.0.2",
     "knex": "^3.1.0",
+    "netlify-cli": "^17.18.0",
+    "netlify-lambda": "^2.0.16",
     "nodemon": "^3.0.2",
     "pg": "^8.11.3",
-    "pino": "^8.17.2"
+    "pino": "^8.17.2",
+    "serverless-http": "^3.2.0"
   },
   "devDependencies": {
     "eslint": "^8.56.0",
