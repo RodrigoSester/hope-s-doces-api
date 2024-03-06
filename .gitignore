@@ -7,11 +7,11 @@ node_modules
 # VSCode
 .vscode
 
-# package-lock 
-package-lock.json
-
 # Coverage
 coverage
 
 # images
 images
+
+# Local Netlify folder
+.netlify

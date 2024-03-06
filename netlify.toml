@@ -1,3 +1,5 @@
-[build]:
-  command = "npm run build"
-  functions = "src"
+[build]
+  functions = "functions"
+
+[dev]
+  publish = "dist"
