@@ -17,4 +17,11 @@ app.use(personRoutes);
 app.use(recipeRoutes);
 app.use(orderRoutes);
 
+app.listen({
+  host: '0.0.0.0',
+  port: process.env.PORT || 3333
+}).then(() => {
+  console.log('Server running');
+});
+
 module.exports = app;
