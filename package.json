@@ -8,8 +8,7 @@
     "lint:fix": "eslint --fix .",
     "lint": "eslint .",
     "dev": "nodemon --watch ./src/index.js",
-    "start": "node ./src/index.js",
-    "build": "netlify-lambda build src"
+    "start": "node ./src/index.js"
   },
   "keywords": [],
   "author": "",
