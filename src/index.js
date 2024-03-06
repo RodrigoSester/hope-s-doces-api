@@ -1,5 +1,4 @@
 const express = require('express');
-const serverless = require('serverless-http');
 
 const app = express();
 const cors = require('cors');
@@ -13,10 +12,9 @@ app.use(express.json());
 
 app.use(cors());
 
-app.use('/.netlify/functions/app/user', userRoutes);
-app.use('/.netlify/functions/app/person', personRoutes);
-app.use('/.netlify/functions/app/recipe', recipeRoutes);
-app.use('/.netlify/functions/app/order', orderRoutes);
+app.use(userRoutes);
+app.use(personRoutes);
+app.use(recipeRoutes);
+app.use(orderRoutes);
 
 module.exports = app;
-module.exports.handler = serverless(app);
