@@ -1,7 +1,7 @@
 const request = require('supertest');
-const app = require('../../index');
-
 const knex = require('knex');
+
+const app = require('../../src/index');
 const knexfile = require('../../knexfile');
 
 let server;
