@@ -44,7 +44,14 @@ const register = async(req, res) => {
     };
     const registeredUser = await userService.register(userDTO);
 
-    return res.status(201).json(registeredUser[0]);
+    const token = jwt.sign({ id: registeredUser.id, email, username }, process.env.JWT_SECRET, {
+      expiresIn: '1d'
+    });
+
+    return res.status(201).json({
+      token,
+      ...registeredUser[0]
+    });
   } catch (error) {
     logger.error(error);
     res.status(400).json({ message: error.message });
