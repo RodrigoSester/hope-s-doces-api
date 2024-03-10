@@ -1,8 +1,7 @@
 const jwt = require('jsonwebtoken');
-const bcrypt = require('bcrypt');
 
 const { logger } = require('../utils');
-const { userService } = require('../services');
+const { userExistsByEmail } = require('../helpers/verify-existence.helper');
 
 const verify = async(req, res, next) => {
   try {
@@ -15,17 +14,7 @@ const verify = async(req, res, next) => {
     const token = authorization.split(' ')[1];
     const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
 
-    const user = userService.getUserByEmail(decodedToken.email);
-
-    if (!user) {
-      throw new Error('User not found');
-    }
-
-    const isPasswordValid = await bcrypt.compare(user.password, decodedToken.password);
-
-    if (!isPasswordValid) {
-      throw new Error('Invalid password');
-    }
+    const user = await userExistsByEmail(decodedToken.email);
 
     req.user = user;
     next();
