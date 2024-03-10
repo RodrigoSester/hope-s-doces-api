@@ -1,4 +1,6 @@
 const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
+
 const { logger } = require('../utils');
 const { userService } = require('../services');
 
@@ -17,6 +19,12 @@ const verify = async(req, res, next) => {
 
     if (!user) {
       throw new Error('User not found');
+    }
+
+    const isPasswordValid = await bcrypt.compare(user.password, decodedToken.password);
+
+    if (!isPasswordValid) {
+      throw new Error('Invalid password');
     }
 
     req.user = user;
