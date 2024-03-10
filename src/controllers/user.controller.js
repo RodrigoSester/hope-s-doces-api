@@ -1,18 +1,23 @@
 const bcrypt = require('bcrypt');
-
-const { userService } = require('../services');
-
 const jwt = require('jsonwebtoken');
-const { logger } = require('../config');
+
+const { logger } = require('../utils');
+const { userService } = require('../services');
+const { verifyPassword, userExistsByEmail } = require('../helpers/verify-existence.helper');
 
 const login = async(req, res) => {
-  try {
-    const { id, email, username } = req.body;
+  const { email, password } = req.body;
 
-    const token = jwt.sign({ id, email, username }, process.env.JWT_SECRET, {
+  try {
+    const user = await userExistsByEmail(email);
+    const hashedPassword = user.password;
+  
+    await verifyPassword(password, hashedPassword);
+    
+    const token = jwt.sign({ id: user.id, email, username: user.username }, process.env.JWT_SECRET, {
       expiresIn: '1d'
     });
-
+    
     return res.status(200).json({ token });
   } catch (error) {
     logger.error(error);
@@ -23,6 +28,12 @@ const login = async(req, res) => {
 const register = async(req, res) => {
   try {
     const { username, email, password } = req.body;
+
+    const user = await userService.getUserByEmail(email);
+
+    if (user) {
+      return res.status(400).json({ message: 'User already exists' });
+    }
 
     const hashedPassword = await bcrypt.hash(password, 10);
 

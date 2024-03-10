@@ -1,6 +1,6 @@
 const { orderService } = require('../services');
 const verifyExistence = require('../helpers/verify-existence.helper');
-const { logger } = require('../config');
+const { logger } = require('../utils');
 
 const registerOrder = async(req, res) => {
   try {
@@ -31,9 +31,9 @@ const registerOrder = async(req, res) => {
 
 const getAllOrders = async(req, res) => {
   try {
-    const { limit, offset, sortBy, order } = req.queryOptions;
+    const filter = req.queryOptions;
 
-    const orders = await orderService.getAll(limit, offset, sortBy, order);
+    const orders = await orderService.getAll(filter);
 
     return res.status(200).json(orders);
   } catch (error) {

@@ -1,5 +1,7 @@
 const jwt = require('jsonwebtoken');
-const { logger } = require('../config');
+
+const { logger } = require('../utils');
+const { userExistsByEmail } = require('../helpers/verify-existence.helper');
 
 const verify = async(req, res, next) => {
   try {
@@ -17,7 +19,9 @@ const verify = async(req, res, next) => {
 
     const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
 
-    req.user = decodedToken;
+    const user = await userExistsByEmail(decodedToken.email);
+
+    req.user = user;
     next();
   } catch (error) {
     logger.error(error);

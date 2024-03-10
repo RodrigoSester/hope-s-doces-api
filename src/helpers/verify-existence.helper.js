@@ -1,4 +1,10 @@
-const { personService, orderService } = require('../services');
+const bcrypt = require('bcrypt');
+
+const {
+  personService,
+  orderService,
+  userService
+} = require('../services');
 
 const personExists = async(personId) => {
   const person = await personService.getById(personId);
@@ -20,7 +26,29 @@ const orderExists = async(orderId) => {
   return order;
 };
 
+const verifyPassword = async(password, hashedPassword) => {
+  const isPasswordValid = await bcrypt.compare(password, hashedPassword);
+
+  if (!isPasswordValid) {
+    throw new Error('Invalid password');
+  }
+
+  return isPasswordValid;
+};
+
+const userExistsByEmail = async(email) => {
+  const user = await userService.getUserByEmail(email);
+
+  if (!user) {
+    throw new Error('User not found');
+  }
+
+  return user;
+};
+
 module.exports = {
   personExists,
-  orderExists
+  orderExists,
+  verifyPassword,
+  userExistsByEmail
 };

@@ -2,7 +2,7 @@ const { personService } = require('../services');
 
 const verifyExistence = require('../helpers/verify-existence.helper');
 
-const { logger } = require('../config');
+const { logger } = require('../utils');
 
 const registerPerson = async(req, res) => {
   const { name, number } = req.body;
@@ -75,8 +75,55 @@ const getAll = async(req, res) => {
   }
 };
 
+const remove = async(req, res) => {
+  const { personId } = req.params;
+
+  await verifyExistence.personExists(personId);
+
+  try {
+    const personDTO = {
+      id: personId,
+      userId: req.user.id
+    };
+    await personService.remove(personDTO);
+
+    return res.status(204).send();
+  } catch (err) {
+    logger.error(err);
+
+    return res.status(500).json({
+      message: 'error',
+      error: err,
+      code: 'internal_server_error'
+    });
+  }
+};
+
+const getOrdersByPersonId = async(req, res) => {
+  const filter = req.queryOptions;
+  const { personId } = req.params;
+
+  try {
+    const person = await verifyExistence.personExists(personId);
+
+    const orders = await personService.getOrdersByPersonId(person.id, filter);
+
+    return res.status(200).json(orders);
+  } catch (err) {
+    logger.error(err);
+
+    return res.status(500).json({
+      message: 'error',
+      error: err,
+      code: 'internal_server_error'
+    });
+  }
+};
+
 module.exports = {
   registerPerson,
   getById,
-  getAll
+  getAll,
+  remove,
+  getOrdersByPersonId
 };

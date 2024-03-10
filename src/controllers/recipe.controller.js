@@ -5,14 +5,14 @@ function _calculateCostOfOne(ingredient) {
 
   switch (ingredient.type) {
     case 'volume':
-      return (ingredient.cost / ingredient.total_volume) * ingredient.quantity;
+      return (ingredient.cost / ingredient.totalVolume) * ingredient.quantity;
     case 'weight':
-      return (ingredient.cost / _getWeightNumber(ingredient.total_weight)) * _getWeightNumber(ingredient.weight);
+      return (ingredient.cost / _getWeightNumber(ingredient.totalWeight)) * _getWeightNumber(ingredient.weight);
     case 'unit':
       return ingredient.cost * ingredient.quantity;
     case 'spoon':
       spoon = ingredient?.spoonWeight ? spoonWeightEnum[ingredient?.spoonWeight] : spoonWeightEnum.TABLE_FLAT;
-      return ((ingredient.spoons * spoon) * ingredient.cost) / _getWeightNumber(ingredient.total_weight);
+      return ((ingredient.spoons * spoon) * ingredient.cost) / _getWeightNumber(ingredient.totalWeight);
     default:
       return 0;
   }
@@ -47,7 +47,7 @@ const calculateProfit = (req, res) => {
   const workValue = totalTime * hourValue;
 
   const revenue = productPrice * quantity;
-  const profit = revenue - (parseFloat(recipeCost) + workValue);
+  const profit = revenue - parseFloat(recipeCost);
 
   res.json({
     recipeCost,
