@@ -7,9 +7,9 @@ const { logger } = require('../utils');
 
 const login = async(req, res) => {
   try {
-    const { id, email, username } = req.body;
+    const { email, username } = req.body;
 
-    const token = jwt.sign({ id, email, username }, process.env.JWT_SECRET, {
+    const token = jwt.sign({ email, username }, process.env.JWT_SECRET, {
       expiresIn: '1d'
     });
 
