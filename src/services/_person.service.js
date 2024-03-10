@@ -5,11 +5,9 @@ const register = async(person) => {
     .insert({
       name: person.name,
       number: person.number,
-      createdBy: person.createdBy,
-      updatedBy: person.createdBy
-    })
-    .into('person')
-    .returning(['id', 'name', 'number', 'created_by', 'created_at']);
+      createdBy: person.createdBy
+    }, ['id', 'name', 'number', 'created_by', 'created_at'])
+    .into('person');
 };
 
 const getById = async(id) => {
@@ -32,16 +30,14 @@ const getAll = async(filter) => {
 };
 
 const remove = async(personDTO) => {
-  return await db
-    .raw(`
-      UPDATE person
-      SET
-        is_deleted = $1,
-        deleted_at = NOW(),
-        deleted_by = $2
-      WHERE 
-        id = $3
-    `, [true, personDTO.userId, personDTO.id]);
+  return await db.raw(`
+    UPDATE person 
+    SET 
+      is_deleted = true, 
+      deleted_at = NOW(), 
+      deleted_by = ? 
+    WHERE id = ?
+  `, [personDTO.userId, personDTO.id]);
 };
 
 module.exports = {
