@@ -87,7 +87,7 @@ const remove = async(req, res) => {
     };
     await personService.remove(personDTO);
 
-    return res.status(201).send();
+    return res.status(204).send();
   } catch (err) {
     logger.error(err);
 
