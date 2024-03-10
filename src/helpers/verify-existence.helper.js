@@ -1,3 +1,5 @@
+const bcrypt = require('bcrypt');
+
 const { personService, orderService } = require('../services');
 
 const personExists = async(personId) => {
@@ -20,7 +22,18 @@ const orderExists = async(orderId) => {
   return order;
 };
 
+const verifyPassword = async(password, hashedPassword) => {
+  const isPasswordValid = await bcrypt.compare(password, hashedPassword);
+
+  if (!isPasswordValid) {
+    throw new Error('Invalid password');
+  }
+
+  return isPasswordValid;
+};
+
 module.exports = {
   personExists,
-  orderExists
+  orderExists,
+  verifyPassword
 };
