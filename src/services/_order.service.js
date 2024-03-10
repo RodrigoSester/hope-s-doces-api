@@ -12,12 +12,13 @@ const register = async(orderDTO) => {
     `, [orderDTO.personId, orderDTO.description, orderDTO.value, orderDTO.isPaid, orderDTO.adress, orderDTO.createdBy, orderDTO.createdBy]);
 };
 
-const getAll = async(limit, offset, sortBy, order) => {
+const getAll = async(filter) => {
   return await db
     .select('id', 'person_id', 'description', 'value', 'is_paid', 'adress', 'created_at', 'created_by')
     .from('order')
-    .limit(limit)
-    .offset(offset);
+    .limit(filter.limit)
+    .offset(filter.offset)
+    .orderBy(filter.sortBy, filter.order);
 };
 
 const getById = async(id) => {
