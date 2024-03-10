@@ -99,9 +99,31 @@ const remove = async(req, res) => {
   }
 };
 
+const getOrdersByPersonId = async(req, res) => {
+  const filter = req.queryOptions;
+  const { personId } = req.params;
+
+  try {
+    const person = await verifyExistence.personExists(personId);
+
+    const orders = await personService.getOrdersByPersonId(person.id, filter);
+
+    return res.status(200).json(orders);
+  } catch (err) {
+    logger.error(err);
+
+    return res.status(500).json({
+      message: 'error',
+      error: err,
+      code: 'internal_server_error'
+    });
+  }
+};
+
 module.exports = {
   registerPerson,
   getById,
   getAll,
-  remove
+  remove,
+  getOrdersByPersonId
 };

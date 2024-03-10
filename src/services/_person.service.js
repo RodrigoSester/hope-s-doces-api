@@ -39,9 +39,22 @@ const remove = async(personDTO) => {
   `, [personDTO.userId, personDTO.id]);
 };
 
+const getOrdersByPersonId = async(personId, filter) => {
+  return await db
+    .select(['o.id', 'o.description', 'o.value', 'o.is_paid', 'o.adress', 'p.name', 'p.number', 'o.created_by', 'o.created_at', 'o.updated_by', 'o.updated_at'])
+    .from('order as o')
+    .join('person as p', 'o.person_id', 'p.id')
+    .where('person_id', personId)
+    .andWhereNot('o.is_deleted', true)
+    .offset(filter.offset)
+    .limit(filter.limit)
+    .orderBy(filter.sortBy, filter.order);
+};
+
 module.exports = {
   register,
   getById,
   getAll,
-  remove
+  remove,
+  getOrdersByPersonId
 };
