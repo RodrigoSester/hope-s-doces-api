@@ -3,10 +3,10 @@ const db = require('../../database/config');
 const register = async(person) => {
   return await db
     .raw(`
-      INSERT INTO person (name, number, created_by, created_at)
-      VALUES (?, ?, ?, NOW())
+      INSERT INTO person (name, number, created_by, created_at, updated_by, updated_at)
+      VALUES (?, ?, ?, NOW(), ?, NOW())
       RETURNING id, name, number, created_by, created_at;
-    `, [person.name, person.number, person.createdBy]);
+    `, [person.name, person.number, person.createdBy, person.createdBy]);
 };
 
 const getById = async(id) => {
