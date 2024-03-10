@@ -2,12 +2,11 @@ const db = require('../../database/config');
 
 const register = async(person) => {
   return await db
-    .insert({
-      name: person.name,
-      number: person.number,
-      createdBy: person.createdBy
-    }, ['id', 'name', 'number', 'created_by', 'created_at'])
-    .into('person');
+    .raw(`
+      INSERT INTO person (name, number, created_by, created_at)
+      VALUES (?, ?, ?, NOW())
+      RETURNING id, name, number, created_by, created_at;
+    `, [person.name, person.number, person.createdBy]);
 };
 
 const getById = async(id) => {
