@@ -7,7 +7,7 @@
     "migrations": "knex migrate:latest",
     "lint:fix": "eslint --fix .",
     "lint": "eslint .",
-    "dev": "nodemon --watch ./src/index.js",
+    "dev": "nodemon --watch ./src --ext .js",
     "start": "node ./src/index.js",
     "build": "npm ci && npm run migrations",
     "start:prod": "NODE_ENV=production node ./src/index.js"
