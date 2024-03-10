@@ -1,18 +1,23 @@
 const bcrypt = require('bcrypt');
-
-const { userService } = require('../services');
-
 const jwt = require('jsonwebtoken');
+
 const { logger } = require('../utils');
+const { userService } = require('../services');
+const { verifyPassword, userExistsByEmail } = require('../helpers/verify-existence.helper');
 
 const login = async(req, res) => {
-  try {
-    const { email, username } = req.body;
+  const { email, password } = req.body;
 
-    const token = jwt.sign({ email, username }, process.env.JWT_SECRET, {
+  try {
+    const user = await userExistsByEmail(email);
+    const hashedPassword = user.password;
+  
+    await verifyPassword(password, hashedPassword);
+    
+    const token = jwt.sign({ id: user.id, email, username: user.username }, process.env.JWT_SECRET, {
       expiresIn: '1d'
     });
-
+    
     return res.status(200).json({ token });
   } catch (error) {
     logger.error(error);
