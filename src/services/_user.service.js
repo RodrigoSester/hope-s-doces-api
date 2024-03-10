@@ -11,6 +11,15 @@ const register = async(person) => {
     .returning(['id', 'username', 'email']);
 };
 
+const getUserByEmail = async(email) => {
+  return await db
+    .select('id', 'username', 'email', 'password')
+    .from('user')
+    .where({ email })
+    .first();
+};
+
 module.exports = {
-  register
+  register,
+  getUserByEmail
 };
