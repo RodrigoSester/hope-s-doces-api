@@ -149,7 +149,8 @@ const config = {
 
   // Options that will be passed to the testEnvironment
   testEnvironmentOptions: {
-    NODE_ENV: 'test'
+    NODE_ENV: 'test',
+    DB_NAME: 'hopes-test-environment'
   },
 
   // Adds a location field to test results
