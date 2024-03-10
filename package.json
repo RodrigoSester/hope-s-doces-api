@@ -11,7 +11,7 @@
     "start": "node ./src/index.js",
     "build": "npm ci && npm run migrations",
     "start:prod": "NODE_ENV=production node ./src/index.js",
-    "test": "jest"
+    "test": "jest --coverage --no-cache  --detectOpenHandles --runInBand --forceExit"
   },
   "keywords": [],
   "author": "",
