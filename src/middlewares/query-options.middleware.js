@@ -1,7 +1,7 @@
 const { logger } = require('../utils');
 
 const apply = async(req, res, next) => {
-  const { limit = 10, offset = 0, sortBy, order } = req.query;
+  const { limit = 10, offset = 0, sortBy = 'id', order = 'asc' } = req.query;
 
   if (limit <= 0) {
     logger.error('The limit must be greater than 0');
