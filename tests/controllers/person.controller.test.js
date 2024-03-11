@@ -48,7 +48,7 @@ describe('Person tests', () => {
         .set('Authorization', `Bearer ${token}`);
   
       expect(response.status).toBe(404);
-      expect(response.body).toEqual({ message: 'error', error: 'Person not found', code: 'internal_server_error' });
+      expect(response.body).toEqual({ message: 'error', error: 'Person with id 10000 not found', code: 'internal_server_error' });
     });
 
     it('should return 200 if the person exists', async() => {
