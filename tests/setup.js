@@ -1,13 +1,9 @@
 const request = require('supertest');
-const knex = require('knex');
 
 const app = require('../src/index');
-const knexfile = require('../knexfile');
-
-let db;
+const db = require('../database/config');
 
 async function _runMigrations() {
-  db = knex(knexfile.test);
   await db.migrate.latest();
 }
 
