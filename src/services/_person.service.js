@@ -6,7 +6,8 @@ const register = async(person) => {
       INSERT INTO person (name, number, created_by, created_at, updated_by, updated_at)
       VALUES (?, ?, ?, NOW(), ?, NOW())
       RETURNING id, name, number, created_by, created_at;
-    `, [person.name, person.number, person.createdBy, person.createdBy]);
+    `, [person.name, person.number, person.createdBy, person.createdBy])
+    .then((response) => response.rows[0]);
 };
 
 const getById = async(id) => {
