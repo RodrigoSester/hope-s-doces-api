@@ -43,9 +43,9 @@ const getById = async(req, res) => {
     return res.status(200).json(person);
   } catch (err) {
     logger.error(err.message);
-    return res.status(500).json({
+    return res.status(404).json({
       message: 'error',
-      error: err,
+      error: err.message,
       code: 'internal_server_error'
     });
   }
