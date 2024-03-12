@@ -21,6 +21,54 @@ describe('Person tests', () => {
       expect(response.status).toBe(400);
       expect(response.body).toEqual({ message: 'Missing required fields' });
     });
+
+    it('should return 400 if the body is missing the name field', async() => {
+      const response = await request(app)
+        .post('/person')
+        .send({ number: '123456789' })
+        .set('Accept', 'application/json')
+        .set('Content-Type', 'application/json')
+        .set('Authorization', `Bearer ${token}`);
+  
+      expect(response.status).toBe(400);
+      expect(response.body).toEqual({ message: 'Missing required fields' });
+    });
+
+    it('should return 400 if the body is missing the number field', async() => {
+      const response = await request(app)
+        .post('/person')
+        .send({ name: 'John Doe' })
+        .set('Accept', 'application/json')
+        .set('Content-Type', 'application/json')
+        .set('Authorization', `Bearer ${token}`);
+
+      expect(response.status).toBe(400);
+      expect(response.body).toEqual({ message: 'Missing required fields' });
+    });
+
+    it('should return 400 if the number field is not a string', async() => {
+      const response = await request(app)
+        .post('/person')
+        .send({ name: 'John Doe', number: 123456789 })
+        .set('Accept', 'application/json')
+        .set('Content-Type', 'application/json')
+        .set('Authorization', `Bearer ${token}`);
+
+      expect(response.status).toBe(400);
+      expect(response.body).toEqual({ message: 'Invalid data type' });
+    });
+
+    it('should return 400 if the name field is not a string', async() => {
+      const response = await request(app)
+        .post('/person')
+        .send({ name: 123456789, number: '123456789' })
+        .set('Accept', 'application/json')
+        .set('Content-Type', 'application/json')
+        .set('Authorization', `Bearer ${token}`);
+
+      expect(response.status).toBe(400);
+      expect(response.body).toEqual({ message: 'Invalid data type' });
+    });
   
     it('should return 201 if the person is successfully registered', async() => {
       const response = await request(app)
