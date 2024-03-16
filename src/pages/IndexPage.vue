@@ -13,7 +13,7 @@
 
 <script>
 import { defineComponent } from 'vue'
-import { api } from 'src/boot/axios';
+import orderService from 'src/services/order.service';
 
 export default defineComponent({
   name: 'IndexPage',
@@ -31,43 +31,58 @@ export default defineComponent({
     setColumns() {
       this.columns = [
         {
-          name: 'name',
-          label: 'Name',
+          name: 'id',
+          label: 'ID do pedido',
           align: 'left',
-          field: 'name',
+          field: 'id',
           sortable: true
         },
         {
-          name: 'price',
-          label: 'Price',
-          align: 'left',
-          field: 'price',
+          name: 'person_id',
+          label: 'ID da pessoa',
+          align: 'center',
+          field: 'person_id',
           sortable: true
         },
         {
-          name: 'quantity',
-          label: 'Quantity',
+          name: 'description',
+          label: 'Descrição',
           align: 'left',
-          field: 'quantity',
+          field: 'description',
           sortable: true
         },
         {
-          name: 'total',
+          name: 'value',
           label: 'Total',
           align: 'left',
-          field: 'total',
+          field: 'value',
+          sortable: true
+        },
+        {
+          name: 'is_paid',
+          label: 'Pago',
+          align: 'left',
+          field: 'is_paid',
+          sortable: true
+        },
+        {
+          name: 'created_at',
+          label: 'Data de criação',
+          align: 'left',
+          field: 'created_at',
+          sortable: true
+        },
+        {
+          name: 'adress',
+          label: 'Endereço',
+          align: 'left',
+          field: 'adress',
           sortable: true
         }
       ]
     },
     async fetchData() {
-      const response = await api.get('http://localhost:3000/orders', {
-        headers: {
-          'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAsImVtYWlsIjoicm9kcmlnb3dzZXN0ZXJoZWltQGdtYWlsLmNvbSIsInVzZXJuYW1lIjoiUm9kcmlnbyBXZWJlciBTZXN0ZXJoZWltIiwiaWF0IjoxNzEwNTMzNDMxLCJleHAiOjE3MTA2MTk4MzF9.F0JcDTh1Oaco5r-d6l9894_pvrCQE82XXxrXgchpDaA'
-        }
-      });
-      console.log(response.data);
-      this.rows = response.data;
+      this.rows = await orderService.getAll();
     }
   },
 })
