@@ -12,14 +12,24 @@
 // to match your app's branding.
 // Tip: Use the "Theme Builder" on Quasar's documentation website.
 
-$primary   : #1976D2;
-$secondary : #26A69A;
-$accent    : #9C27B0;
+@import url("https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap");
 
-$dark      : #1D1D1D;
-$dark-page : #121212;
+$primary: "#f0e150";
+$error: "#ea5f40";
+$errorBase: "#cc0606";
+$errorText: "#bd0303";
+$success: "#cee741";
+$successBase: "#8fd14f";
+$successText: "#098c29";
+$warning: "#f0e150";
+$warningBase: "#fac710";
+$warningText: "#bb9a30";
+$info: "#4de8ee";
+$infoBase: "#12cdd4";
+$infoText: "#07578c";
+$text: "#464545";
+$textBase: "#7d7d7d";
 
-$positive  : #21BA45;
-$negative  : #C10015;
-$info      : #31CCEC;
-$warning   : #F2C037;
+h1 {
+  font-family: "Fredoka One", cursive;
+}
