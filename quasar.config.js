@@ -115,27 +115,20 @@ module.exports = configure(function (/* ctx */) {
       config: {
         brand: {
           primary: '#f0e150',
-
-          text: {
-            base: '#464545',
-            base100: '#7d7d7d'
-          },
-
           error: '#ea5f40',
           errorBase: '#cc0606',
           errorText: '#bd0303',
-
           success: '#cee741',
           successBase: '#8fd14f',
           successText: '#098c29',
-
           warning: '#f0e150',
           warningBase: '#fac710',
           warningText: '#bb9a30',
-
           info: '#4de8ee',
           infoBase: '#12cdd4',
-          infoText: '#07578c'
+          infoText: '#07578c',
+          text: '#464545',
+          textBase: '#7d7d7d',
         }
       },
 
