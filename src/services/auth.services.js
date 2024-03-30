@@ -2,8 +2,8 @@ import axios, { api } from "src/boot/axios"
 import { setToken } from "src/utils/token.utils";
 
 export default {
-  async login(email, password) {
-    const response = await api.post('users/login', { email, password })
+  async login(body) {
+    const response = await api.post('users/login', body)
 
     setToken(response.data.token)
 
