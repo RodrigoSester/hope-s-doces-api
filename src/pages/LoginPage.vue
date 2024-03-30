@@ -1,7 +1,8 @@
 <template>
-  <q-page>
-    <div class="q-pa-md">
-      <q-card>
+  <q-page class="login">
+    <div class="q-pa-md fixed-center justify-center">
+      <h1 class="login__title">Hope's Doces</h1>
+      <q-card class="rounded-borders">
         <q-card-section>
           <q-form @submit="login">
             <q-input
@@ -10,12 +11,7 @@
               outlined
               class="q-mb-md"
             />
-            <q-input
-              v-model="email"
-              label="E-mail"
-              outlined
-              class="q-mb-md"
-            />
+            <q-input v-model="email" label="E-mail" outlined class="q-mb-md" />
             <q-input
               v-model="password"
               label="Senha"
@@ -37,27 +33,36 @@
 </template>
 
 <script>
-import authServices from 'src/services/auth.services';
-import { defineComponent } from 'vue'
+import authServices from "src/services/auth.services";
+import { defineComponent } from "vue";
 
 export default defineComponent({
-  name: 'LoginPage',
+  name: "LoginPage",
   data() {
     return {
-      email: '',
-      password: '',
-      username: ''
-    }
+      email: "",
+      password: "",
+      username: "",
+    };
   },
   methods: {
     async login() {
       const body = {
         username: this.username,
         email: this.email,
-        password: this.password
-      }
-      await authServices.register(body)
-    }
-  }
-})
+        password: this.password,
+      };
+      await authServices.register(body);
+    },
+  },
+});
 </script>
+
+<style lang="scss" scoped>
+.login {
+  &__title {
+    color: $primary !important;
+    text-align: center;
+  }
+}
+</style>
