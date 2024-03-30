@@ -10,6 +10,7 @@
               label="Username"
               outlined
               class="q-mb-md"
+              :rules="rules"
             />
             <q-input v-model="email" label="E-mail" outlined class="q-mb-md" />
             <q-input
@@ -43,6 +44,7 @@ export default defineComponent({
       email: "",
       password: "",
       username: "",
+      rules: [(val) => val.length > 0 || "Campo obrigatório"],
     };
   },
   methods: {
