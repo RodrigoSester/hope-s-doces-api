@@ -5,20 +5,28 @@
       <q-card class="rounded-borders">
         <q-card-section>
           <q-form @submit="login">
+            <span class="input"> Username* </span>
             <q-input
               v-model="username"
-              label="Username"
               outlined
               class="q-mb-md"
               :rules="rules"
             />
-            <q-input v-model="email" label="E-mail" outlined class="q-mb-md" />
+            <span class="input"> E-mail* </span>
+            <q-input
+              outlined
+              v-model="email"
+              type="email"
+              class="q-mb-md"
+              :rules="emailRules"
+            />
+            <span class="input"> Senha* </span>
             <q-input
               v-model="password"
-              label="Senha"
               type="password"
               outlined
               class="q-mb-md"
+              :rules="rules"
             />
             <q-btn
               type="submit"
@@ -45,6 +53,7 @@ export default defineComponent({
       password: "",
       username: "",
       rules: [(val) => val.length > 0 || "Campo obrigatório"],
+      emailRules: [(val, rules) => rules.email(val) || "E-mail inválido"],
     };
   },
   methods: {
