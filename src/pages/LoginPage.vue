@@ -5,13 +5,6 @@
       <q-card class="rounded-borders">
         <q-card-section>
           <q-form @submit="login">
-            <span class="input"> Username* </span>
-            <q-input
-              v-model="username"
-              outlined
-              class="q-mb-md"
-              :rules="rules"
-            />
             <span class="input"> E-mail* </span>
             <q-input
               outlined
@@ -63,7 +56,7 @@ export default defineComponent({
         email: this.email,
         password: this.password,
       };
-      await authServices.register(body);
+      await authServices.login(body);
     },
   },
 });
