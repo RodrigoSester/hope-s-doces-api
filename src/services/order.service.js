@@ -1,8 +1,8 @@
-import axios, { api } from "src/boot/axios"
+import { api } from "src/boot/axios"
 
 export default {
   async getAll() {
-    const response = await api.get('http://localhost:3000/orders')
+    const response = await api.get('/orders')
     return response.data
   }
 }
