@@ -1,19 +1,23 @@
 <template>
-  <q-page class="flex order">
+  <q-page class="order">
     <div class="row flex justify-between items-center q-pa-md order__header">
-      <h1 class="order__header-title">Pedidos</h1>
+      <h1 class="q-my-sm order__header-title">Pedidos</h1>
       <div size="16px">
         <q-btn
           label="Registrar pedido"
-          icon="plus"
-          color="black"
-          size="16px"
-          rounded
+          icon="mdi-plus"
+          color="warning"
+          size="20px"
         />
       </div>
     </div>
-    <div class="row inline q-pa-md">
-      <q-table title="Orders" :rows="rows" :columns="columns" row-key="name" />
+    <div class="row q-pa-md order__table">
+      <q-table
+        class="order__table-list"
+        :rows="rows"
+        :columns="columns"
+        row-key="name"
+      />
     </div>
   </q-page>
 </template>
@@ -99,11 +103,22 @@ export default defineComponent({
 .order {
   &__header {
     width: 100%;
+    height: 10%;
   }
 
   &__header-title {
     color: $primary;
     text-align: center;
+  }
+
+  &__table {
+    width: 100%;
+    height: 90%;
+  }
+
+  &__table-list {
+    width: 100%;
+    height: 100%;
   }
 }
 </style>
