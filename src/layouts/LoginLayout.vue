@@ -7,12 +7,11 @@
 </template>
 
 <script>
-import { defineComponent } from 'vue'
+import { defineComponent } from "vue";
 
 export default defineComponent({
-  name: 'LoginLayout'
-})
+  name: "LoginLayout",
+});
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>
