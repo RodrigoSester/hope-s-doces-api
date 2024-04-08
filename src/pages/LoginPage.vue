@@ -26,6 +26,7 @@
               label="Entrar"
               color="primary"
               class="q-mb-md"
+              to="/orders"
             />
           </q-form>
         </q-card-section>
