@@ -74,6 +74,7 @@ export default defineComponent({
           label: "Total",
           align: "left",
           field: "value",
+          format: (val) => `R$ ${val.toFixed(2)}`,
           sortable: true,
         },
         {
@@ -110,6 +111,12 @@ export default defineComponent({
           align: "left",
           field: "adress",
           sortable: true,
+        },
+        {
+          name: "actions",
+          label: "Ações",
+          align: "center",
+          field: "actions",
         },
       ];
     },
