@@ -1,8 +1,14 @@
 import { api } from "src/boot/axios"
+import { getToken } from "src/utils/token.utils"
 
 export default {
   async getAll() {
-    const response = await api.get('/orders')
-    return response.data
+    const token = getToken();
+    const response = await api.get('/orders', {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      }
+    });
+    return response.data;
   }
 }
