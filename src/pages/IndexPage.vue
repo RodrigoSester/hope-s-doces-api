@@ -63,10 +63,31 @@ export default defineComponent({
           sortable: true,
         },
         {
+          name: "address",
+          label: "Endereço",
+          align: "left",
+          field: "address",
+          sortable: true,
+        },
+        {
           name: "value",
           label: "Total",
           align: "left",
           field: "value",
+          sortable: true,
+        },
+        {
+          name: "delivery_status",
+          label: "Status de entrega",
+          align: "left",
+          field: "delivery_status",
+          sortable: true,
+        },
+        {
+          name: "payment_status",
+          label: "Status de pagamento",
+          align: "left",
+          field: "payment_status",
           sortable: true,
         },
         {
