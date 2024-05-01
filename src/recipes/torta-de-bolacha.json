@@ -1,0 +1,55 @@
+{
+  "ingredients": [
+    {
+      "title": "Leite Condensado",
+      "type": "unit",
+      "cost": 4.49,
+      "quantity": 2
+    },
+    {
+      "title": "Leite",
+      "type": "unit",
+      "cost": 3.78,
+      "quantity": 1
+    },
+    {
+      "title": "Maizena",
+      "type": "spoon",
+      "cost": 5,
+      "totalWeight": "500g",
+      "spoons": 5
+    },
+    {
+      "title": "Nescau",
+      "type": "spoon",
+      "cost": 16.98,
+      "totalWeight": "700g",
+      "spoons": 6
+    },
+    {
+      "title": "Pote",
+      "type": "volume",
+      "cost": 17.95,
+      "totalVolume": 25,
+      "quantity": 1
+    },
+    {
+      "title": "Bolacha Maria",
+      "type": "weight",
+      "cost": 9,
+      "totalWeight": "400g",
+      "weight": "200g"
+    },
+    {
+      "title": "Ovo",
+      "type": "volume",
+      "cost": 12,
+      "totalVolume": 21,
+      "quantity": 4
+    }
+  ],
+  "totalTime": 1.5,
+  "hourValue": 3,
+  "productPrice": 12,
+  "quantity": 7
+}

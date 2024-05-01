@@ -1,0 +1,54 @@
+{
+  "ingredients": [
+    {
+      "title": "Leite Condensado",
+      "type": "unit",
+      "cost": 4.49,
+      "quantity": 2
+    },
+    {
+      "title": "Creme de Leite",
+      "type": "unit",
+      "cost": 2.49,
+      "quantity": 1
+    },
+    {
+      "title": "Leite ninho",
+      "type": "weight",
+      "cost": 20.49,
+      "totalWeight": "380g",
+      "weight": "60g"
+    },
+    {
+      "title": "Chocolate",
+      "type": "weight",
+      "cost": 49.90,
+      "totalWeight": "2100g",
+      "weight": "500g"
+    },
+    {
+      "title": "Caixa",
+      "type": "volume",
+      "cost": 6.5,
+      "totalVolume": 1,
+      "quantity": 1
+    },
+    {
+      "title": "Kinder",
+      "type": "unit",
+      "cost": 5.39,
+      "quantity": 1
+    },
+    {
+      "title": "Nutella",
+      "type": "weight",
+      "cost": 41.90,
+      "totalWeight": "650g",
+      "weight": "100g"
+    }
+  ],
+  "totalTime": 2,
+  "hourValue": 3,
+  "productPrice": 65,
+  "quantity": 1
+}

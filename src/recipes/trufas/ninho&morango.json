@@ -1,0 +1,41 @@
+{
+  "ingredients": [
+    {
+      "title": "Leite Condensado",
+      "type": "unit",
+      "cost": 4.49,
+      "quantity": 1
+    },
+    {
+      "title": "Creme de Leite",
+      "type": "unit",
+      "cost": 2.49,
+      "quantity": 1
+    },
+    {
+      "title": "Leite ninho",
+      "type": "weight",
+      "cost": 20.49,
+      "totalWeight": "380g",
+      "weight": "30g"
+    },
+    {
+      "title": "Chocolate",
+      "type": "weight",
+      "cost": 33,
+      "totalWeight": "1000g",
+      "weight": "12g"
+    },
+    {
+      "title": "Morango",
+      "type": "volume",
+      "cost": 9.90,
+      "totalVolume": 15,
+      "quantity": 5
+    }
+  ],
+  "totalTime": 2,
+  "hourValue": 3,
+  "productPrice": 3.5,
+  "quantity": 5
+}
