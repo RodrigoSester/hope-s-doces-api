@@ -55,14 +55,33 @@
             </div>
           </q-td>
         </template>
+        <template #body-cell-delivery_status="props">
+          <q-td :props="props">
+            <StatusChip :status="props.row.payment_status" />
+          </q-td>
+        </template>
+        <template #body-cell-delivered_at="props">
+          <q-td :props="props">
+            <span>{{
+              formatDate(props.row.delivered_at, "DD/MM/YYYY HH:MM")
+            }}</span>
+          </q-td>
+        </template>
         <template #body-cell-payment_status="props">
           <q-td :props="props">
             <StatusChip :status="props.row.payment_status" />
           </q-td>
         </template>
-        <template #body-cell-delivery_status="props">
+        <template #body-cell-paid_at="props">
           <q-td :props="props">
-            <StatusChip :status="props.row.payment_status" />
+            <span>{{ formatDate(props.row.paid_at, "DD/MM/YYYY HH:MM") }}</span>
+          </q-td>
+        </template>
+        <template #body-cell-created_at="props">
+          <q-td :props="props">
+            <span>{{
+              formatDate(props.row.created_at, "DD/MM/YYYY HH:MM")
+            }}</span>
           </q-td>
         </template>
       </q-table>
@@ -72,8 +91,11 @@
 
 <script>
 import { defineComponent } from "vue";
+import { date } from "quasar";
 import orderService from "src/services/order.service";
 import StatusChip from "src/components/ui/StatusChip.vue";
+
+const { formatDate } = date;
 
 export default defineComponent({
   name: "IndexPage",
@@ -100,6 +122,7 @@ export default defineComponent({
     this.setColumns();
   },
   methods: {
+    formatDate,
     setColumns() {
       this.columns = [
         {
