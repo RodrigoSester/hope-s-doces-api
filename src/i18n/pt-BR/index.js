@@ -47,6 +47,13 @@ export default {
     },
     buttons: {
       register: 'Registrar {entity}'
+    },
+    status: {
+      pending: 'Pendente',
+      preparing: 'Preparando',
+      delivering: 'Entregando',
+      delivered: 'Entregue',
+      canceled: 'Cancelado',
     }
   }
 }
