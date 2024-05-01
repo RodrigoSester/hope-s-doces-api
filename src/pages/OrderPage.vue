@@ -1,13 +1,19 @@
 <template>
   <q-page class="order">
     <div class="row flex justify-between items-center q-pa-md order__header">
-      <h1 class="q-my-sm order__header-title">Pedidos</h1>
+      <h1 class="q-my-sm order__header-title">
+        {{ $t("common.plural.order") }}
+      </h1>
       <div size="16px">
         <q-btn
-          label="Registrar pedido"
-          icon="mdi-plus"
+          :label="
+            $t('common.buttons.register', {
+              entity: $t('common.singular.order'),
+            })
+          "
+          icon="mdi-plus-thick"
           color="warning"
-          size="20px"
+          size="16px"
         />
       </div>
     </div>
@@ -90,13 +96,6 @@ export default defineComponent({
           label: "Descrição",
           align: "left",
           field: "description",
-          sortable: true,
-        },
-        {
-          name: "address",
-          label: "Endereço",
-          align: "left",
-          field: "address",
           sortable: true,
         },
         {
@@ -185,6 +184,7 @@ export default defineComponent({
   &__header-title {
     color: $primary;
     text-align: center;
+    font-size: 60px;
   }
 
   &__table {
