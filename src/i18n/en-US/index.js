@@ -40,6 +40,13 @@ export default {
       password: 'Invalid password',
       phone: 'Invalid phone',
       address: 'Invalid address',
+    },
+    entity: {
+      order: 'order',
+      client: 'client',
+    },
+    buttons: {
+      register: 'Register {entity}'
     }
   }
 }

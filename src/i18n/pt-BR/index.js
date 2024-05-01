@@ -40,6 +40,13 @@ export default {
       password: 'Senha inválida',
       phone: 'Telefone inválido',
       address: 'Endereço inválido',
+    },
+    entity: {
+      order: 'pedido',
+      client: 'cliente',
+    },
+    buttons: {
+      register: 'Registrar {entity}'
     }
   }
 }
