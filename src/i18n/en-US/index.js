@@ -23,6 +23,23 @@ export default {
     plural: {
       order: 'Orders',
       client: 'Clients',
+    },
+    fields: {
+      name: 'Name',
+      email: 'E-mail',
+      password: 'Password',
+      phone: 'Phone',
+      address: 'Address',
+      notes: 'Notes',
+      createdAt: 'Created at',
+      updatedAt: 'Updated at',
+    },
+    rules: {
+      required: 'Required field',
+      email: 'Invalid e-mail',
+      password: 'Invalid password',
+      phone: 'Invalid phone',
+      address: 'Invalid address',
     }
   }
 }
