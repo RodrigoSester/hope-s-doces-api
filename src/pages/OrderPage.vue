@@ -55,6 +55,16 @@
             </div>
           </q-td>
         </template>
+        <template #body-cell-payment_status="props">
+          <q-td :props="props">
+            <StatusChip :status="props.row.payment_status" />
+          </q-td>
+        </template>
+        <template #body-cell-delivery_status="props">
+          <q-td :props="props">
+            <StatusChip :status="props.row.payment_status" />
+          </q-td>
+        </template>
       </q-table>
     </div>
   </q-page>
@@ -63,9 +73,13 @@
 <script>
 import { defineComponent } from "vue";
 import orderService from "src/services/order.service";
+import StatusChip from "src/components/ui/StatusChip.vue";
 
 export default defineComponent({
   name: "IndexPage",
+  components: {
+    StatusChip,
+  },
   data() {
     return {
       loading: false,
@@ -135,7 +149,7 @@ export default defineComponent({
         {
           name: "payment_status",
           label: "Status de pagamento",
-          align: "left",
+          align: "center",
           field: "payment_status",
           sortable: true,
         },
@@ -227,7 +241,7 @@ export default defineComponent({
   }
 
   &__table-list-person-number {
-    color: $textBase;
+    color: $text--base;
   }
 }
 </style>
