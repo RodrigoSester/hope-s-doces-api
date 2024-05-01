@@ -43,24 +43,6 @@
 import { defineComponent, ref } from "vue";
 import EssentialLink from "components/EssentialLink.vue";
 
-const linksList = [
-  {
-    title: "common.plural.client",
-    icon: "mdi-account-group",
-    link: "/clients",
-  },
-  {
-    title: "common.plural.order",
-    icon: "mdi-package-variant",
-    link: "/orders",
-  },
-  {
-    title: "settings.title",
-    icon: "mdi-cogs",
-    link: "/settings",
-  },
-];
-
 export default defineComponent({
   name: "MainLayout",
 
@@ -68,16 +50,33 @@ export default defineComponent({
     EssentialLink,
   },
 
-  setup() {
-    const leftDrawerOpen = ref(false);
-
+  data() {
     return {
-      essentialLinks: linksList,
-      leftDrawerOpen,
-      toggleLeftDrawer() {
-        leftDrawerOpen.value = !leftDrawerOpen.value;
-      },
+      leftDrawerOpen: false,
+      essentialLinks: [
+        {
+          title: this.$t("common.plural.client"),
+          icon: "mdi-account-group",
+          link: "/clients",
+        },
+        {
+          title: this.$t("common.plural.order"),
+          icon: "mdi-package-variant",
+          link: "/orders",
+        },
+        {
+          title: this.$t("settings.title"),
+          icon: "mdi-cogs",
+          link: "/settings",
+        },
+      ],
     };
+  },
+
+  methods: {
+    toggleLeftDrawer() {
+      this.leftDrawerOpen = !this.leftDrawerOpen;
+    },
   },
 });
 </script>
