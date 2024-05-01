@@ -152,7 +152,7 @@ export default defineComponent({
           label: "Total",
           align: "left",
           field: "value",
-          // format: (val) => `R$ ${val.toFixed(2)}`,
+          format: (val) => `R$ ${parseFloat(val).toFixed(2)}`,
           sortable: true,
         },
         {
