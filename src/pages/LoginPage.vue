@@ -1,11 +1,11 @@
 <template>
   <q-page class="login">
     <div class="q-pa-md fixed-center justify-center">
-      <h1 class="login__title">Hope's Doces</h1>
+      <h1 class="login__title">{{ $t("title") }}</h1>
       <q-card class="rounded-borders">
         <q-card-section>
           <q-form @submit="login">
-            <span class="input"> E-mail* </span>
+            <span class="input"> {{ $t("common.fields.email") }}* </span>
             <q-input
               outlined
               v-model="email"
@@ -13,7 +13,7 @@
               class="q-mb-md"
               :rules="emailRules"
             />
-            <span class="input"> Senha* </span>
+            <span class="input"> {{ $t("common.fields.password") }}* </span>
             <q-input
               v-model="password"
               type="password"
@@ -27,6 +27,7 @@
               color="primary"
               class="q-mb-md"
               to="/orders"
+              @click="login"
             />
           </q-form>
         </q-card-section>
@@ -46,18 +47,26 @@ export default defineComponent({
       email: "",
       password: "",
       username: "",
-      rules: [(val) => val.length > 0 || "Campo obrigatório"],
-      emailRules: [(val, rules) => rules.email(val) || "E-mail inválido"],
+      rules: [(val) => val.length > 0 || this.$t("common.rules.required")],
+      emailRules: [
+        (val, rules) => rules.email(val) || this.$t("common.rules.email"),
+      ],
     };
   },
   methods: {
     async login() {
-      const body = {
-        username: this.username,
-        email: this.email,
-        password: this.password,
-      };
-      await authServices.login(body);
+      try {
+        const body = {
+          username: this.username,
+          email: this.email,
+          password: this.password,
+        };
+
+        await authServices.login(body);
+        this.$router.push("/orders");
+      } catch (err) {
+        console.error(err);
+      }
     },
   },
 });
