@@ -43,6 +43,18 @@
         :columns="columns"
         :loading="loading"
       >
+        <template #body-cell-person="props">
+          <q-td :props="props">
+            <div class="column">
+              <span class="order__table-list-person">
+                {{ props.row.person.name }}
+              </span>
+              <span class="order__table-list-person-number">
+                {{ props.row.person.number }}
+              </span>
+            </div>
+          </q-td>
+        </template>
       </q-table>
     </div>
   </q-page>
@@ -85,9 +97,9 @@ export default defineComponent({
           headerClasses: "order__table-header__id",
         },
         {
-          name: "person_id",
+          name: "person",
           label: "Pessoa",
-          align: "center",
+          align: "left",
           field: "person_id",
           sortable: true,
         },
@@ -206,6 +218,16 @@ export default defineComponent({
   &__table-list {
     width: 100%;
     height: 100%;
+  }
+
+  &__table-list-person {
+    font-weight: bold;
+    color: $text;
+    font-size: 16px;
+  }
+
+  &__table-list-person-number {
+    color: $textBase;
   }
 }
 </style>
