@@ -1,23 +1,23 @@
 const statusChipColorsEnum = {
   PENDING: {
-    color: 'warning--base',
-    textColor: 'warning--text',
-    backgroundColor: 'warning'
+    'color': '#bb9a30',
+    'border-color': '#FAC710',
+    'background-color': '#f0e150 !important',
   },
   SUCCESS: {
-    color: 'success--base',
-    textColor: 'success--text',
-    backgroundColor: 'success'
+    'color': '#098c29',
+    'border-color': '#cee741',
+    'background-color': '#8fd14f !important',
   },
   ERROR: {
-    color: 'error--base',
-    textColor: 'error--text',
-    backgroundColor: 'error'
+    'color': '#bd0303',
+    'border-color': '#cc0606',
+    'background-color': '#ea5f40 !important',
   },
   INFO: {
-    color: 'info--base',
-    textColor: 'info--text',
-    backgroundColor: 'info'
+    'color': '#07578c',
+    'border-color': '#12cdd4',
+    'background-color': '#4de8ee !important',
   }
 };
 

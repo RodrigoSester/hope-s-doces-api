@@ -4,6 +4,7 @@
     square
     size="16px"
     class="status-chip"
+    :style="getStyle()"
     :label="$t(`common.status.${status}`)"
   />
 </template>
@@ -21,11 +22,8 @@ export default defineComponent({
     },
   },
   methods: {
-    getColor() {
-      return statusChipColorsEnum[this.status.toUpperCase()].color;
-    },
-    getTextColor() {
-      return statusChipColorsEnum[this.status.toUpperCase()].textColor;
+    getStyle() {
+      return statusChipColorsEnum[this.status.toUpperCase()];
     },
   },
 });
