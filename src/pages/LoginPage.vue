@@ -26,7 +26,7 @@
               label="Entrar"
               color="primary"
               class="q-mb-md"
-              to="/orders"
+              :loading="loading"
               @click="login"
             />
           </q-form>
@@ -44,6 +44,7 @@ export default defineComponent({
   name: "LoginPage",
   data() {
     return {
+      loading: false,
       email: "",
       password: "",
       username: "",
@@ -55,6 +56,8 @@ export default defineComponent({
   },
   methods: {
     async login() {
+      this.loading = true;
+
       try {
         const body = {
           username: this.username,
@@ -63,9 +66,12 @@ export default defineComponent({
         };
 
         await authServices.login(body);
-        this.$router.push("/orders");
+
+        this.$router.replace("/orders");
       } catch (err) {
         console.error(err);
+      } finally {
+        this.loading = false;
       }
     },
   },
