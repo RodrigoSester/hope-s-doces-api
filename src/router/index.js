@@ -1,5 +1,5 @@
 import { route } from 'quasar/wrappers'
-import { createRouter, createMemoryHistory, createWebHistory, createWebHashHistory } from 'vue-router'
+import { createRouter, createMemoryHistory, createWebHistory } from 'vue-router'
 import routes from './routes'
 
 import { isAuthenticated } from 'src/utils/token.utils';
@@ -14,9 +14,7 @@ import { isAuthenticated } from 'src/utils/token.utils';
  */
 
 export default route(function (/* { store, ssrContext } */) {
-  const createHistory = process.env.SERVER
-    ? createMemoryHistory
-    : (process.env.VUE_ROUTER_MODE === 'history' ? createWebHistory : createWebHashHistory)
+  const createHistory = process.env.SERVER ? createMemoryHistory : createWebHistory;
 
   const Router = createRouter({
     scrollBehavior: () => ({ left: 0, top: 0 }),
@@ -27,6 +25,10 @@ export default route(function (/* { store, ssrContext } */) {
     // quasar.conf.js -> build -> publicPath
     history: createHistory(process.env.VUE_ROUTER_BASE)
   })
+
+  if (!isAuthenticated()) {
+    Router.replace('/login')
+  }
 
   Router.beforeEach((to, from, next) => {
     const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
