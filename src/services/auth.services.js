@@ -7,16 +7,12 @@ export default {
 
     setToken(response.data.token)
 
-    axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.token}`;
-
     return response.data
   },
   async register(body) {
     const response = await api.post('/users', body);
 
     setToken(response.data.token)
-
-    axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.token}`;
 
     return response.data
   },
