@@ -28,16 +28,13 @@ export default route(function (/* { store, ssrContext } */) {
 
   if (!isAuthenticated()) {
     Router.replace('/login')
+  } else {
+    Router.replace('/orders')
   }
 
-  Router.beforeEach((to, from, next) => {
-    const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
-
-    if (requiresAuth && !isAuthenticated()) {
-      next('/login');
-    } else {
-      next();
-    }
+  Router.onError((error) => {
+    // TODO: Handle error
+    console.error(error)
   })
 
   return Router
