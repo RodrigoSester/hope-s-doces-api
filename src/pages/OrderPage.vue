@@ -26,7 +26,7 @@
         icon-next-page="mdi-chevron-right"
         icon-last-page="mdi-page-last"
         separator="cell"
-        row-key="name"
+        row-key="id"
         :no-data-label="$t('common.table.noData')"
         :no-results-label="$t('common.table.noResults')"
         :rows-per-page-label="$t('common.table.rowsPerPage')"
@@ -84,18 +84,13 @@
             </span>
           </q-td>
         </template>
-        <template #body-cell-actions="props">
+        <template #body-cell-actions="{ row }">
           <q-td>
-            <q-btn round icon="mdi-dots-horizontal-circle-outline" size="16">
-              <q-menu anchor="bottom start">
-                <q-item clickable @click="onEdit(props.row)">
-                  <q-item-section>
-                    <q-icon left name="mdi-pencil-outline" size="16"></q-icon>
-                    <q-item-label>Editar</q-item-label>
-                  </q-item-section>
-                </q-item>
-              </q-menu>
-            </q-btn>
+            <ButtonGroup
+              iconButton="mdi-dots-vertical"
+              :item="row"
+              :actions="actions"
+            />
           </q-td>
         </template>
       </q-table>
@@ -108,6 +103,7 @@ import { defineComponent } from "vue";
 import { date } from "quasar";
 import orderService from "src/services/order.service";
 import StatusChip from "src/components/ui/StatusChip.vue";
+import ButtonGroup from "src/components/ui/ButtonGroup.vue";
 
 const { formatDate } = date;
 
@@ -115,12 +111,14 @@ export default defineComponent({
   name: "OrderPage",
   components: {
     StatusChip,
+    ButtonGroup,
   },
   data() {
     return {
       loading: false,
       rows: [],
       columns: [],
+      actions: [],
       perPageOptions: [10, 25, 50],
       pagination: {
         sortBy: "id",
@@ -134,6 +132,7 @@ export default defineComponent({
   mounted() {
     this.fetchData();
     this.setColumns();
+    this.setActions();
   },
   methods: {
     formatDate,
@@ -218,6 +217,30 @@ export default defineComponent({
         },
       ];
     },
+    setActions() {
+      this.actions = [
+        {
+          label: "Editar",
+          icon: "mdi-pencil-outline",
+          callback: (item) => this.onEdit(item),
+        },
+        {
+          label: "Marcar como pago",
+          icon: "mdi-currency-usd",
+          callback: (item) => this.onSetAsPaid(item),
+        },
+        {
+          label: "Marcar como entregue",
+          icon: "mdi-truck",
+          callback: (item) => this.onSetAsDelivered(item),
+        },
+        {
+          label: "Excluir",
+          icon: "mdi-cancel",
+          callback: (item) => this.onCancel(item),
+        },
+      ];
+    },
     async fetchData() {
       this.loading = true;
 
@@ -234,7 +257,16 @@ export default defineComponent({
     },
 
     onEdit(item) {
-      console.log("LOG: -> onEdit -> item:", item.id);
+      console.log("LOG: -> onEdit -> item:", item);
+    },
+    onSetAsPaid(item) {
+      console.log("LOG: -> handleItemAction -> item:", item);
+    },
+    onSetAsDelivered(item) {
+      console.log("LOG: -> handleItemAction -> item:", item);
+    },
+    onCancel(item) {
+      console.log("LOG: -> handleItemAction -> item:", item);
     },
   },
 });
