@@ -62,9 +62,9 @@
         </template>
         <template #body-cell-delivered_at="props">
           <q-td :props="props">
-            <span>{{
-              formatDate(props.row.delivered_at, "DD/MM/YYYY HH:MM")
-            }}</span>
+            <span>
+              {{ formatDate(props.row.delivered_at, "DD/MM/YYYY HH:MM") }}
+            </span>
           </q-td>
         </template>
         <template #body-cell-payment_status="props">
@@ -79,9 +79,23 @@
         </template>
         <template #body-cell-created_at="props">
           <q-td :props="props">
-            <span>{{
-              formatDate(props.row.created_at, "DD/MM/YYYY HH:MM")
-            }}</span>
+            <span>
+              {{ formatDate(props.row.created_at, "DD/MM/YYYY HH:MM") }}
+            </span>
+          </q-td>
+        </template>
+        <template #body-cell-actions="props">
+          <q-td>
+            <q-btn round icon="mdi-dots-horizontal-circle-outline" size="16">
+              <q-menu anchor="bottom start">
+                <q-item clickable @click="onEdit(props.row)">
+                  <q-item-section>
+                    <q-icon left name="mdi-pencil-outline" size="16"></q-icon>
+                    <q-item-label>Editar</q-item-label>
+                  </q-item-section>
+                </q-item>
+              </q-menu>
+            </q-btn>
           </q-td>
         </template>
       </q-table>
@@ -98,7 +112,7 @@ import StatusChip from "src/components/ui/StatusChip.vue";
 const { formatDate } = date;
 
 export default defineComponent({
-  name: "IndexPage",
+  name: "OrderPage",
   components: {
     StatusChip,
   },
@@ -117,7 +131,7 @@ export default defineComponent({
       },
     };
   },
-  created() {
+  mounted() {
     this.fetchData();
     this.setColumns();
   },
@@ -201,7 +215,6 @@ export default defineComponent({
           name: "actions",
           label: "Ações",
           align: "center",
-          field: "actions",
         },
       ];
     },
@@ -218,6 +231,10 @@ export default defineComponent({
       } finally {
         this.loading = false;
       }
+    },
+
+    onEdit(item) {
+      console.log("LOG: -> onEdit -> item:", item.id);
     },
   },
 });
