@@ -2,9 +2,9 @@
  * @param { import("knex").Knex } knex
  * @returns { Promise<void> }
  */
-exports.up = function(knex) {
+exports.up = function (knex) {
   return knex.schema.alterTable('person', table => {
-    table.string('email', 100).unique().notNullable();
+    table.string('email', 100).unique();
     table.string('number').alter().unique();
     table.text('address');
   });
@@ -14,7 +14,7 @@ exports.up = function(knex) {
  * @param { import("knex").Knex } knex
  * @returns { Promise<void> }
  */
-exports.down = function(knex) {
+exports.down = function (knex) {
   return knex.schema.alterTable('person', table => {
     table.dropColumn('email');
     table.string('number').alter().dropUnique();
