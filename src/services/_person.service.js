@@ -43,6 +43,8 @@ const getAll = async (filter) => {
       "id",
       "name",
       "number",
+      "email",
+      "address",
       "created_by",
       "created_at",
       "updated_by",
