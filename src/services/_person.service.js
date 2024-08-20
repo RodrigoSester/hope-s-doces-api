@@ -20,6 +20,31 @@ const register = async (person) => {
     .then((response) => response.rows[0]);
 };
 
+const update = async (personDTO) => {
+  return await db.raw(
+    `
+    UPDATE person 
+    SET 
+      name = ?, 
+      number = ?, 
+      email = ?, 
+      address = ?, 
+      updated_by = ?, 
+      updated_at = NOW() 
+    WHERE id = ?
+    RETURNING id, name, number, created_by, created_at;
+  `,
+    [
+      personDTO.name,
+      personDTO.number,
+      personDTO.email,
+      personDTO.address,
+      personDTO.updatedBy,
+      personDTO.id,
+    ]
+  );
+};
+
 const getById = async (id) => {
   return await db
     .select([
@@ -97,6 +122,7 @@ const getOrdersByPersonId = async (personId, filter) => {
 
 module.exports = {
   register,
+  update,
   getById,
   getAll,
   remove,

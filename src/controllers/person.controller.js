@@ -42,6 +42,35 @@ const registerPerson = async (req, res) => {
   }
 };
 
+const update = async (req, res) => {
+  const { id: userId } = req.user;
+  const { id } = req.params;
+
+  const body = await _validateRegisterPersonBody(req.body);
+
+  try {
+    await verifyExistence.personExists(id);
+
+    const personDTO = {
+      ...body.value,
+      id,
+      updatedBy: userId,
+    };
+
+    const updatedPerson = await personService.update(personDTO);
+
+    return res.status(200).json(updatedPerson);
+  } catch (err) {
+    logger.error(err);
+
+    return res.status(500).json({
+      message: "error",
+      error: err,
+      code: "internal_server_error",
+    });
+  }
+};
+
 const getById = async (req, res) => {
   const { id } = req.params;
 
@@ -130,6 +159,7 @@ const getOrdersByPersonId = async (req, res) => {
 
 module.exports = {
   registerPerson,
+  update,
   getById,
   getAll,
   remove,
